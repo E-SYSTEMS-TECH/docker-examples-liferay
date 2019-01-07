@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
         liferay:
-                image: esystemstech/liferay:7.0.6-ga7
+                image: esystemstech/liferay:7.1.1-ga2
                 container_name: liferay
                 restart: always
                 ports:
@@ -27,7 +27,7 @@ services:
                         - libreoffice
 
         elasticsearch:
-                image: esystemstech/elasticsearch:liferay-7.0.6-ga7
+                image: esystemstech/elasticsearch:liferay-7.1.1-ga2
                 container_name: elasticsearch
                 restart: always
                 networks:
@@ -45,7 +45,7 @@ services:
                         - 9200
                         - 9300
         libreoffice:
-                image: esystemstech/libreoffice:liferay-7.0.6-ga7
+                image: esystemstech/libreoffice:liferay-7.1.1-ga2
                 container_name: libreoffice
                 restart: always
                 networks:
