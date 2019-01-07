@@ -1,0 +1,86 @@
+version: '3.6'
+
+services:
+        liferay:
+                image: esystemstech/liferay:7.0.6-ga7-8.5-openjdk-8-jdk-stretch-slim
+                container_name: liferay
+                restart: always
+                ports:
+                        - 8080:8080
+                networks:
+                        - external
+                        - services-only
+                env_file:
+                        - database.properties
+                        - liferay.config.d/portal.properties
+                        - liferay.config.d/tomcat-server.properties
+                        - liferay.config.d/docker-environment.properties
+                volumes:
+                        - liferay-data:/opt/liferay/home/data
+                        - liferay-logs:/var/log/tomcat8
+                        - liferay-conversions:/var/lib/tomcat8/temp/liferay/document_conversion
+                tmpfs:
+                        - /var/lib/tomcat8/temp/liferay:uid=7002,gid=7006,mode=1770
+                depends_on:
+                        - mysql
+                        - elasticsearch
+                        - libreoffice
+
+        elasticsearch:
+                image: esystemstech/elasticsearch:liferay-7.0.6-ga7-8.5-openjdk-8-jdk-stretch-slim
+                container_name: elasticsearch
+                restart: always
+                networks:
+                        - services-only
+                volumes:
+                        - elasticsearch-data:/usr/share/elasticsearch/data
+                ulimits:
+                        memlock:
+                                soft: -1
+                                hard: -1
+                        nofile:
+                                soft: 65536
+                                hard: 65536
+                expose:
+                        - 9200
+                        - 9300
+        libreoffice:
+                image: esystemstech/libreoffice:liferay-7.0.6-ga7-8.5-openjdk-8-jdk-stretch-slim
+                container_name: libreoffice
+                restart: always
+                networks:
+                        - services-only
+                expose:
+                        - 8100
+                volumes:
+                        - liferay-conversions:/var/lib/tomcat8/temp/liferay/document_conversion
+
+        mysql:
+                image: mysql:5.7
+                container_name: mysql
+                restart: always
+                command: ["mysqld", "--character-set-server=utf8", "--collation-server=utf8_general_ci", "--default-time-zone=+00:00","--explicit_defaults_for_timestamp"]
+                env_file:
+                        - database.properties
+                networks:
+                        - services-only
+                expose:
+                       - 3306
+                volumes:
+                        - mysql-data:/var/lib/mysql
+volumes:
+       mysql-data:
+       liferay-data:
+       liferay-logs:
+       elasticsearch-data:
+       liferay-conversions:
+                driver_opts:
+                       type: tmpfs
+                       device: tmpfs
+                       o: uid=7002,gid=7005,mode=2770
+
+networks:
+    services-only:
+        internal: true
+    external:
+        internal: false
