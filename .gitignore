@@ -1,0 +1,113 @@
+#basic
+*.class
+doc/
+build/
+out/
+dist/
+/docker/
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.lar
+
+#Gradle
+build_gradle/
+.gradle/
+!gradle-wrapper.jar
+image-base.tgz
+gradlew
+gradlew.bat
+/gradle
+
+# LR themes
+node_modules/
+liferay-theme.json
+.web_bundle_build
+.yo-rc.json
+package-lock.json
+npm-debug.log
+_backup/
+
+#LR workspace
+gradle.properties
+
+#LR config
+database.properties
+keys.properties
+
+#LR Servers
+bundles/
+archive/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+.metadata
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse Core
+.project
+.settings/
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
