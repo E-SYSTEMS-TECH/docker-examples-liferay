@@ -33,7 +33,7 @@ services:
                 networks:
                         - services-only
                 volumes:
-                        - elasticsearch-data:/usr/share/elasticsearch/data
+                        - elasticsearch-data:/var/lib/elasticsearch
                 ulimits:
                         nofile:
                                 soft: 65536
