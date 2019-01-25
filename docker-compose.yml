@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
         liferay:
-                image: esystemstech/liferay:7.1.1-ga2
+                image: esystemstech/liferay:7.1.2-ga3
                 container_name: liferay
                 restart: always
                 ports:
@@ -17,17 +17,17 @@ services:
                         - liferay.config.d/docker-environment.properties
                 volumes:
                         - liferay-data:/opt/liferay/home/data
-                        - liferay-logs:/var/log/tomcat8
-                        - liferay-conversions:/var/lib/tomcat8/temp/liferay/document_conversion
+                        - liferay-logs:/var/log/tomcat9
+                        - liferay-conversions:/var/lib/tomcat9/temp/liferay/document_conversion
                 tmpfs:
-                        - /var/lib/tomcat8/temp/liferay:uid=7002,gid=7006,mode=1770
+                        - /var/lib/tomcat9/temp/liferay:uid=7002,gid=7006,mode=1770
                 depends_on:
                         - mysql
                         - elasticsearch
                         - libreoffice
 
         elasticsearch:
-                image: esystemstech/elasticsearch:liferay-7.1.1-ga2
+                image: esystemstech/elasticsearch:liferay-7.1.2-ga3
                 container_name: elasticsearch
                 restart: always
                 networks:
@@ -42,7 +42,7 @@ services:
                         - 9200
                         - 9300
         libreoffice:
-                image: esystemstech/libreoffice:liferay-7.1.1-ga2
+                image: esystemstech/libreoffice:liferay-7.1.2-ga3
                 container_name: libreoffice
                 restart: always
                 networks:
@@ -50,7 +50,7 @@ services:
                 expose:
                         - 8100
                 volumes:
-                        - liferay-conversions:/var/lib/tomcat8/temp/liferay/document_conversion
+                        - liferay-conversions:/var/lib/tomcat9/temp/liferay/document_conversion
 
         mysql:
                 image: mysql:5.7
