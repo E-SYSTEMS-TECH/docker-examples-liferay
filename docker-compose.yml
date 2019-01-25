@@ -17,10 +17,10 @@ services:
                         - liferay.config.d/docker-environment.properties
                 volumes:
                         - liferay-data:/opt/liferay/home/data
-                        - liferay-logs:/var/log/tomcat8
-                        - liferay-conversions:/var/lib/tomcat8/temp/liferay/document_conversion
+                        - liferay-logs:/var/log/tomcat9
+                        - liferay-conversions:/var/lib/tomcat9/temp/liferay/document_conversion
                 tmpfs:
-                        - /var/lib/tomcat8/temp/liferay:uid=7002,gid=7006,mode=1770
+                        - /var/lib/tomcat9/temp/liferay:uid=7002,gid=7006,mode=1770
                 depends_on:
                         - mysql
                         - elasticsearch
@@ -50,7 +50,7 @@ services:
                 expose:
                         - 8100
                 volumes:
-                        - liferay-conversions:/var/lib/tomcat8/temp/liferay/document_conversion
+                        - liferay-conversions:/var/lib/tomcat9/temp/liferay/document_conversion
 
         mysql:
                 image: mysql:5.7
